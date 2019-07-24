@@ -1,21 +1,126 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<p *ngFor="let alert of alerts">
+  <ngb-alert [type]="alert.type" (close)="close(alert)">{{ alert.message }}</ngb-alert>
+</p>
+<p>
+  <button type="button" class="btn btn-primary" (click)="reset()">Reset</button>
+</p>
+
+<p>Bootstrap split buttons and dropdowns on button groups are supported with the existing dropdown directives.</p>
+
+<div class="btn-group mr-3">
+  <button type="button" class="btn btn-outline-success">Plain ol' button</button>
+  <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+    <button class="btn btn-outline-primary" ngbDropdownToggle>Drop me</button>
+    <div class="dropdown-menu" ngbDropdownMenu>
+      <button ngbDropdownItem>One</button>
+      <button ngbDropdownItem>Two</button>
+      <button ngbDropdownItem>Four!</button>
+    </div>
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+
+<div class="btn-group mr-3">
+  <button type="button" class="btn btn-primary">Split me</button>
+  <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+    <button class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle></button>
+    <div class="dropdown-menu" ngbDropdownMenu>
+      <button ngbDropdownItem>One</button>
+      <button ngbDropdownItem>Two</button>
+      <button ngbDropdownItem>Four!</button>
+    </div>
+  </div>
+</div>
+
+<div class="btn-group mr-3">
+  <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+    <button class="btn btn-outline-danger" ngbDropdownToggle>Select me</button>
+    <div class="dropdown-menu" ngbDropdownMenu>
+      <button ngbDropdownItem>One</button>
+      <button ngbDropdownItem>Two</button>
+      <button ngbDropdownItem>Four!</button>
+    </div>
+  </div>
+  <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+    <button class="btn btn-outline-success" ngbDropdownToggle>Or me</button>
+    <div class="dropdown-menu" ngbDropdownMenu>
+      <button ngbDropdownItem>One</button>
+      <button ngbDropdownItem>Two</button>
+      <button ngbDropdownItem>Four!</button>
+    </div>
+  </div>
+</div>
+
+<p><ngb-progressbar showValue="true" type="success" [value]="25"></ngb-progressbar></p>
+<p><ngb-progressbar [showValue]="true" type="info" [value]="50"></ngb-progressbar></p>
+<p><ngb-progressbar showValue="true" type="warning" [value]="150" [max]="200"></ngb-progressbar></p>
+<p><ngb-progressbar [showValue]="true" type="danger" [value]="150" [max]="150"></ngb-progressbar></p>
+
+
+<p>Custom rating template provided as child element</p>
+
+<style>
+  .star {
+    font-size: 1.5rem;
+    color: #b0c4de;
+  }
+  .filled {
+    color: #1e90ff;
+  }
+  .bad {
+    color: #deb0b0;
+  }
+  .filled.bad {
+    color: #ff1e1e;
+  }
+</style>
+
+<ngb-rating [(rate)]="currentRate">
+  <ng-template let-fill="fill" let-index="index">
+    <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+  </ng-template>
+</ngb-rating>
+<hr>
+<pre>Rate: <b>{{currentRate}}</b></pre>
+
+<ngb-tabset #t="ngbTabset">
+  <ngb-tab id="tab-selectbyid1" title="Simple">
+    <ng-template ngbTabContent>
+      <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
+        master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh
+        dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum
+        iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab id="tab-selectbyid2">
+    <ng-template ngbTabTitle><b>Fancy</b> title</ng-template>
+    <ng-template ngbTabContent>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
+      <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
+        craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
+        cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia
+        yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean
+        shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero
+        sint qui sapiente accusamus tattooed echo park.</p>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>
+
+<ngb-datepicker></ngb-datepicker>
+
+<ng-template #tipContent>Hello, World!</ng-template>
+<button type="button" class="btn btn-outline-secondary" [ngbTooltip]="tipContent">
+  I've got markup and bindings in my tooltip!
+</button>
+
+<label for="typeahead-focus">Search for a state:</label>
+<input
+  id="typeahead-focus"
+  type="text"
+  class="form-control"
+  [ngbTypeahead]="search"
+  (focus)="focus$.next($event.target.value)"
+  (click)="click$.next($event.target.value)"
+  #instance="ngbTypeahead"
+/>
+<hr>
 
 <router-outlet></router-outlet>
